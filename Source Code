@@ -1,0 +1,36 @@
+import java.io.*;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.*;
+import org.jsoup.select.Elements;
+public class ScrapingDataPrototype{
+public static void main( String[] args ) throws IOException{
+//i is for the case no. updation in the url link
+int i=1;
+Document doc = null;
+
+	//Mention the file location below
+File file = new File("C:/users/jake/desktop/executables/internship_legal/docs/a.docx");
+FileWriter in = new FileWriter(file);
+
+
+	//No limit should be set on j so that as many cases can be accomodated right now  I am just using a very small number to get the output on the text file 
+	for(int j=0;j<10;j++,i++){
+
+		//to pad 0's to the left of the number i to keep updating the url
+		String s =String.format("%04d", i);
+		    	
+	try{
+	doc = Jsoup.connect("http://judis.nic.in/supremecourt/imgst.aspx?filename="+s).get();  
+	}catch(IOException e){
+	}
+	Elements textbox = doc.getElementsByTag("textarea"); 
+	
+
+	String n = new String("Case : "+ s+"\n "); 
+	in.write(n);
+	in.write('\n');
+	    in.write(textbox.text());
+	    in.write('\n');
+	    System.out.println("Case updated " + s);
+}  }
