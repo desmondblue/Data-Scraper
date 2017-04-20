@@ -1,12 +1,14 @@
 import java.io.*;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
 import org.jsoup.select.Elements;
+
 public class ScrapingDataPrototype{
 public static void main( String[] args ) throws IOException{
+
 //i is for the case no. updation in the url link
 int i=1;
+
 Document doc = null;
 
 	//Mention the file location below
